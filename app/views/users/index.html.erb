@@ -1,0 +1,32 @@
+<h1>All Users and Their Events</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone Number</th>
+      <th>Role</th>
+      <th>Events Created</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.phone_number %></td>
+        <td><%= user.role %></td>
+        <td>
+          <ul>
+            <% user.events.each do |event| %>
+              <li><%= event.name %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back to Events", events_path %>

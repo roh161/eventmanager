@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 5px;
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-top: 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      margin-top: 10px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    a {
+      text-decoration: none;
+      color: #007bff;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Home Page</h1>
+
+    <% if current_user %>
+      <h2>Email ID: <%= current_user.email %></h2>
+      <% if current_user.avatar_url.present? %>
+        <h3><%= current_user.full_name %></h3>
+        <%= image_tag(current_user.avatar_url) %>
+      <% end %>
+      <%= link_to "Edit Account", edit_user_registration_path %>
+      
+      <%= button_to "Logout", destroy_user_session_path, data: { turbo: "false" }, method: :delete %>
+      <button type="button" class="btn btn-outline-info"><%= link_to "My Events", my_events_events_path %></button>
+      <button type="button" class="btn btn-outline-success"><%= link_to "Create New Event", new_event_path %></button>
+      <button type="button" class="btn btn-outline-info"><%= link_to "Show All Events", events_path %></button>
+
+    <% else %>
+      <%= link_to "Login", new_user_session_path %>
+      <%= link_to "Create Account", new_user_registration_path %>
+    <% end %>
+  </div>
+</body>
+</html>

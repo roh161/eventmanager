@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      margin-top: 40px;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    .event-details {
+      margin-top: 20px;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f5f5f5;
+    }
+
+    .event-details h2 {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .event-details p {
+      margin: 10px 0;
+      overflow-wrap: break-word; /* Adjust long text to wrap */
+      word-wrap: break-word; /* For compatibility with older browsers */
+    }
+
+    .actions {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .edit-btn,
+    .delete-btn,
+    .back-btn {
+      display: inline-block;
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .delete-btn {
+      background-color: #dc3545;
+    }
+
+    .back-btn {
+      background-color: #ccc;
+    }
+
+    .edit-btn:hover,
+    .delete-btn:hover,
+    .back-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Event Details</h1>
+
+    <div class="event-details">
+      <h2><%= @event.name %></h2>
+      <p><strong>Description:</strong> <%= @event.description %></p>
+      <p><strong>Start Date:</strong> <%= @event.start_date %></p>
+      <p><strong>End Date:</strong> <%= @event.end_date %></p>
+      <p><strong>City:</strong> <%= @event.city %></p>
+    </div>
+
+    <div class="actions">
+      <%= link_to "Edit", edit_event_path(@event), class: "edit-btn" %>
+      <%= link_to "Delete", event_path(@event), data: { method: :delete, confirm: "Are you sure?" }, class: "delete-btn" %>
+      <%= link_to "Back to Home", root_path, class: "back-btn" %>
+    </div>
+  </div>
+</body>
+</html>
